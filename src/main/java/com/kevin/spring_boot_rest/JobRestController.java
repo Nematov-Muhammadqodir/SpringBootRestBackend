@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kevin.spring_boot_rest.model.JobPost;
 import com.kevin.spring_boot_rest.service.JobService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -26,6 +28,14 @@ public class JobRestController {
     @GetMapping("jobPost/{id}")
     public JobPost getJob(@PathVariable("id") int jobPostId) {
         return service.getJob(jobPostId);
+    }
+
+    @PostMapping("jobPost")
+    public JobPost addJob(@RequestBody JobPost jobPost) {
+
+        service.addJob(jobPost);
+
+        return service.getJob(jobPost.getPostId());
     }
 
 }
