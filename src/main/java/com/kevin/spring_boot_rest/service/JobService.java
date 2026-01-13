@@ -3,6 +3,7 @@ package com.kevin.spring_boot_rest.service;
 import com.kevin.spring_boot_rest.model.JobPost;
 import com.kevin.spring_boot_rest.repo.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,4 +28,7 @@ public class JobService {
         return repo.getJob(value);
     }
 
+    public void updateJobPost(JobPost jobPost) {
+        repo.updateJobPost(jobPost);
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kevin.spring_boot_rest.model.JobPost;
 import com.kevin.spring_boot_rest.service.JobService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -35,6 +36,12 @@ public class JobRestController {
 
         service.addJob(jobPost);
 
+        return service.getJob(jobPost.getPostId());
+    }
+
+    @PutMapping("jobPost")
+    public JobPost updateJobPost(@RequestBody JobPost jobPost) {
+        service.updateJobPost(jobPost);
         return service.getJob(jobPost.getPostId());
     }
 
