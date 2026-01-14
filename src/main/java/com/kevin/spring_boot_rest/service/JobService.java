@@ -3,7 +3,6 @@ package com.kevin.spring_boot_rest.service;
 import com.kevin.spring_boot_rest.model.JobPost;
 import com.kevin.spring_boot_rest.repo.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +29,9 @@ public class JobService {
 
     public void updateJobPost(JobPost jobPost) {
         repo.updateJobPost(jobPost);
+    }
+
+    public void deleteJob(int postId) {
+        repo.deleteJob(postId);
     }
 }
