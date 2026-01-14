@@ -1,6 +1,7 @@
 package com.kevin.spring_boot_rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,12 +29,12 @@ public class JobRestController {
     }
 
     @GetMapping("jobPost/{id}")
-    public JobPost getJob(@PathVariable("id") int jobPostId) {
+    public Optional<JobPost> getJob(@PathVariable("id") int jobPostId) {
         return service.getJob(jobPostId);
     }
 
     @PostMapping("jobPost")
-    public JobPost addJob(@RequestBody JobPost jobPost) {
+    public Optional<JobPost> addJob(@RequestBody JobPost jobPost) {
 
         service.addJob(jobPost);
 
@@ -41,7 +42,7 @@ public class JobRestController {
     }
 
     @PutMapping("jobPost")
-    public JobPost updateJobPost(@RequestBody JobPost jobPost) {
+    public Optional<JobPost> updateJobPost(@RequestBody JobPost jobPost) {
         service.updateJobPost(jobPost);
         return service.getJob(jobPost.getPostId());
     }

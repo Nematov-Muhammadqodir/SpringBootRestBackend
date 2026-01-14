@@ -2,7 +2,11 @@ package com.kevin.spring_boot_rest.model;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Scope("prototype")
 @Component
+@Entity
 public class JobPost {
 
+	@Id
 	private int postId;
 	private String postProfile;
 	private String postDesc;

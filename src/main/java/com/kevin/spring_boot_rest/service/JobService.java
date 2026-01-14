@@ -2,36 +2,41 @@ package com.kevin.spring_boot_rest.service;
 
 import com.kevin.spring_boot_rest.model.JobPost;
 import com.kevin.spring_boot_rest.repo.JobRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class JobService {
     @Autowired
-    public JobRepo repo;
+    private JobRepo repo;
 
-    // method to add a jobPost
-    public void addJob(JobPost jobPost) {
-        repo.addJob(jobPost);
-
-    }
-
-    // method to return all JobPosts
     public List<JobPost> getAllJobs() {
-        return repo.getAllJobs();
+        return repo.findAll();
     }
 
-    public JobPost getJob(int value) {
-        return repo.getJob(value);
+    public Optional<JobPost> getJob(@PathVariable("id") int jobPostId) {
+        return repo.findById(jobPostId);
     }
 
-    public void updateJobPost(JobPost jobPost) {
-        repo.updateJobPost(jobPost);
+    public JobPost addJob(@RequestBody JobPost jobPost) {
+
+        return repo.save(jobPost);
     }
 
-    public void deleteJob(int postId) {
-        repo.deleteJob(postId);
+    public JobPost updateJobPost(@RequestBody JobPost jobPost) {
+
+        return repo.save(jobPost);
     }
+
+    public String deleteJob(@PathVariable("id") int postId) {
+        repo.deleteById(postId);
+        return "Deleted";
+    }
+
 }
