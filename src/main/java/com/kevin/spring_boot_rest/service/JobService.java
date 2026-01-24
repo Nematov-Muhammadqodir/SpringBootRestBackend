@@ -20,7 +20,7 @@ public class JobService {
         return repo.findAll();
     }
 
-    public Optional<JobPost> getJob(@PathVariable("id") int jobPostId) {
+    public Optional<JobPost> getJob(int jobPostId) {
         return repo.findById(jobPostId);
     }
 
